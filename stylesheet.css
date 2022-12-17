@@ -216,19 +216,27 @@ th, td {
 
 
 /*Aside*/
-.contact {
+#contact {
     display: flex;
     justify-content: flex-end;
     flex-basis: 10%;
     position: fixed;
-    top: 1em;
-    right: 1em;
+    top: 5em;
+    right: -17em;
     background-color: #FFC49B;
     padding: 1.5em;
     border-radius: 1em;
     box-shadow: 5px 10px;
     z-index: 1;
+    transition: right 0.5s;
 }
+
+#contact h1 {
+    font-size: 1.5em;
+    padding-right: 2.3em;
+    padding-top: 1.5em;
+}
+
 
 /* .login {
     position: absolute;
