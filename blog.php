@@ -11,26 +11,42 @@
         <h1>Dylan Karrass</h1>
         <nav>
             <ul>
-                <li><a href="main.html#about">About Me</a></li>
-                <li><a href="main.html#skills">Skills</a></li>
-                <li><a href="main.html#education">Education and Qualifications</a></li>
-                <li><a href="main.html#experience">Experience</a></li>
+                <li><a href="main.php#about">About Me</a></li>
+                <li><a href="main.php#skills">Skills</a></li>
+                <li><a href="main.php#education">Education and Qualifications</a></li>
+                <li><a href="main.php#experience">Experience</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blog.php">Blog</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="bg1">
-        <aside class="login">
-            <section>
-                <form method="POST" action="">
+    <?php session_start(); if (isset($_SESSION['uname'])) { ?>
+        <aside>
+            <section id = "login">
+                <form method="POST" action="logout.php">
+                    <fieldset class="main">
+                        <legend>Logout</legend>
+                        <input type="submit" class="btn-grad" value="Logout" />
+                    </fieldset>
+                </form>
+            </section>
+        </aside>
+    <?php } else { ?>
+        <aside>
+            <section id = "login">
+                <form method="POST" action="login.php">
+                    <?php if (isset($_GET['error'])) { ?>
+
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+            
+                    <?php } ?>
                     <fieldset class="main">
                         <legend>Login</legend>
 
                         <p>
-                            <label>Email</label><br>
-                            <input type="email" name="email">
+                            <label>User Name</label><br>
+                            <input type="text" name="uname">
                         </p>
 
                         <p>
@@ -44,10 +60,11 @@
                 </form>
             </section>
         </aside>
+        <?php } ?>
 
         <aside class="addblogbutton">
             <section>
-                <form action="addblog.html">
+                <form action="addBlog.php">
                     <input type="submit" value="Add Blog" />
                 </form>
             </section>
@@ -103,7 +120,7 @@
     </div>
 
     <div class="footer">
-        <p><p><i>Copyright &copy; 2022 Dylan Karrass</i></p>
+        <p><i>Copyright &copy; 2022 Dylan Karrass</i></p>
     </div>
 </body>
 </html>

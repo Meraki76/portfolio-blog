@@ -17,6 +17,7 @@
                 <li><a href="#education">Education and Qualifications</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.php">Blog</a></li>
             </ul>
         </nav>
     </header>
@@ -34,29 +35,52 @@
     </section>
 
 
-    <!--This is for login, part of the failed PHP -->
-    <!-- <aside class="login">
-        <section>
-            <form method="POST" action="">
-                <fieldset class="main">
-                    <legend>Login</legend>
+    <?php session_start(); if (isset($_SESSION['uname'])) { ?>
+        <aside>
+            <section id = "login">
+                <form method="POST" action="logout.php">
+                    <fieldset class="main">
+                        <legend>Welcome, <?php echo $_SESSION['uname'] ?></legend>
+                        <input type="submit" class="btn-grad" value="Logout" />
+                    </fieldset>
+                </form>
+            </section>
+        </aside>
+    <?php } else { ?>
+        <aside>
+            <section id = "login">
+                <form method="POST" action="login.php">
+                    <?php if (isset($_GET['error'])) { ?>
 
-                    <p>
-                        <label>Email</label><br>
-                        <input type="email" name="email">
-                    </p>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+            
+                    <?php } ?>
+                    <fieldset class="main">
+                        <legend>Login</legend>
 
-                    <p>
-                        <label>Password</label><br>
-                        <input type="password" name="password">
-                    </p>
+                        <p>
+                            <label>User Name</label><br>
+                            <input type="text" name="uname">
+                        </p>
 
-                    <input type="submit" class="btn-grad" value="Login" />
+                        <p>
+                            <label>Password</label><br>
+                            <input type="password" name="password">
+                        </p>
 
-                </fieldset>
-            </form>
-        </section>
-    </aside> -->
+                        <input type="submit" class="btn-grad" value="Login" />
+
+                    </fieldset>
+                </form>
+            </section>
+        </aside>
+        <?php } ?>
+
+
+
+
+
+
 
     <span class="anchor" id="about"></span>
     <div class="bg1">
@@ -70,8 +94,8 @@
                 <h1>About Me</h1>
                 <h2>Computer Science undergraduate student studying at Queen Mary University of London</h2>
                 <p>
-                    Hey! I am a programmer, game developer, and musician. I plan to graduate <br>
-                    with my bachelor's degree in Computer Science and persue a career in software engineering, while working <br>
+                    Hey! I am a programmer, game developer, and musician. I plan to graduate
+                    with my bachelor's degree in Computer Science and persue a career in software engineering, while working
                     on my games independently as a hobby. Over the past year I have been learning to play Guitar and have 
                     learnt how to play the fingerstyle method on the acoustic, and I can play the Ukulele fluently.
                 </p>
@@ -124,7 +148,7 @@
 
                 <p>Python</p>
                 <div class="container">
-                    <div class="skillsg python">60%</div>
+                    <div class="skillsg python">90%</div>
                 </div>
             </section>
         </article>
@@ -199,7 +223,7 @@
     </div>
 
     <div class="footer">
-        <p><p><i>Copyright &copy; 2022 Dylan Karrass</i></p>
+        <p><i>Copyright &copy; 2022 Dylan Karrass</i></p>
     </div>
 
 
