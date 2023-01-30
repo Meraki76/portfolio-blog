@@ -34,35 +34,15 @@
                 </form>
             </section>
         </aside>
-    <?php } else { ?>
-        <aside>
-            <section id = "login">
-                <form method="POST" action="login.php">
-                    <?php if (isset($_GET['error'])) { ?>
-
-                        <p class="error"><?php echo $_GET['error']; ?></p>
+    <?php } else { 
             
-                    <?php } ?>
-                    <fieldset class="main">
-                        <legend>Login</legend>
+            echo "<script>
+            window.location.href='main.php';
+            alert('You need to be logged in to add a blog post!');
+            </script>";
 
-                        <p>
-                            <label>User Name</label><br>
-                            <input type="text" name="uname">
-                        </p>
 
-                        <p>
-                            <label>Password</label><br>
-                            <input type="password" name="password">
-                        </p>
-
-                        <input type="submit" class="btn-grad" value="Login" />
-
-                    </fieldset>
-                </form>
-            </section>
-        </aside>
-        <?php } ?>
+        } ?>
 
         <aside class="addpost">
             <section>
