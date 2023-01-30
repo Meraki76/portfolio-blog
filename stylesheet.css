@@ -258,13 +258,31 @@ th, td {
 
 .addblogbutton input[type="submit"] {
     padding: 2em;
-} 
+}
 
+.months {
+    position: fixed;
+    top: 13em;
+    left: 1em;
+    border-radius: 1em;
+    z-index: 0;
+    text-align: center;
+
+}
+
+.months select, .months p {
+    margin: 0.15em;
+    display: inline-block;
+}
 /* Login */
 
 legend {
-    font-size: 125%;
     background-color: #23a6d5;
+    padding: 0.5em;
+    border: 2px solid black;
+    
+
+
 }
 
 input[type=submit], input[type=reset] {

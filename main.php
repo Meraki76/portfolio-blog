@@ -40,7 +40,7 @@
             <section id = "login">
                 <form method="POST" action="logout.php">
                     <fieldset class="main">
-                        <legend>Welcome, <?php echo $_SESSION['uname'] ?></legend>
+                        <legend>Welcome, <?php echo $_SESSION['name'] ?></legend>
                         <input type="submit" class="btn-grad" value="Logout" />
                     </fieldset>
                 </form>

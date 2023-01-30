@@ -11,6 +11,7 @@ session_start();
           while($row = $result->fetch_assoc()) {
             $_SESSION['uname'] = $uname;
             $_SESSION['password'] = $pass;
+            $_SESSION['name'] = $row['name'];
             header("Location: main.php");
           }
         } else {

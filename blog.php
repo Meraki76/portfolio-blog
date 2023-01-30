@@ -5,6 +5,7 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="reset.css" type="text/css" />
     <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -26,7 +27,7 @@
             <section id = "login">
                 <form method="POST" action="logout.php">
                     <fieldset class="main">
-                        <legend>Logout</legend>
+                        <legend>Welcome, <?php echo $_SESSION['name'] ?></legend>
                         <input type="submit" class="btn-grad" value="Logout" />
                     </fieldset>
                 </form>
@@ -60,8 +61,9 @@
                 </form>
             </section>
         </aside>
-        <?php } ?>
+    <?php } ?>
 
+    <div class="bg1">                    
         <aside class="addblogbutton">
             <section>
                 <form action="addBlog.php">
@@ -69,54 +71,62 @@
                 </form>
             </section>
         </aside>
+        
+        <aside class="months">
+            <form action="" method="post" id="months">
+                <p>Filter by Month:</p>
+                <select name="month"; onchange="this.form.submit()";>
+                    <option value="All">Select</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                    <option value="All">All</option>
+                </select>
+            </form>
+        </aside>
 
-        <article class="blog">
-            <section>
-                <h1>Example post 1</h1>
-                <p>
-                    Hey! I am an aspiring programmer, web developer, game developer, and musician. I plan to graduate <br>
-                    with my bachelor's degree in Computer Science and persue a career in web development, while working <br>
-                    on my games independently as a hobby. Furthermore, I can fluently play the Ukulele and am currently <br>
-                    learning how to play the guitar.
-                </p>
-            </section>
-        </article>
+        <?php 
+            include 'connect.php';
+            if(isset($_POST['month'])){
+                $month = $_POST['month'];
+                if($month == "All"){
+                    $result = $conn->query("SELECT * FROM posts");
+                } else {
+                    $result = $conn->query("SELECT * FROM posts WHERE MONTH(date) = '$month'");
+                    if($result->num_rows == 0){
+                        echo "<article class='blog'>";
+                        echo "<section>";
+                        echo "<h1>There are no blogs for this month!</h1>";
+                        echo "</section>";
+                        echo "</article>";
+                    }
+                }
+            } else {
+                $result = $conn->query("SELECT * FROM posts");
+            }
 
-        <article class="blog">
-            <section>
-                <h1>Example post 2</h1>
-                <p>
-                    Hey! I am an aspiring programmer, web developer, game developer, and musician. I plan to graduate <br>
-                    with my bachelor's degree in Computer Science and persue a career in web development, while working <br>
-                    on my games independently as a hobby. Furthermore, I can fluently play the Ukulele and am currently <br>
-                    learning how to play the guitar.
-                </p>
-            </section>
-        </article>
+            while($row = $result->fetch_assoc()) {
+                echo "<article class='blog'>";
+                echo "<section>";
+                echo "<h1>" . $row['title'] . "</h1>";
+                echo "<p style='text-align: left; font-size: 70%;'>";
+                echo $row['date'];
+                echo "<p>";
+                echo "<p>" . $row['body'] . "</p>";
+                echo "</section>";
+                echo "</article>";
+            }
+            ?>
 
-        <article class="blog">
-            <section>
-                <h1>Example post 3</h1>
-                <p>
-                    Hey! I am an aspiring programmer, web developer, game developer, and musician. I plan to graduate <br>
-                    with my bachelor's degree in Computer Science and persue a career in web development, while working <br>
-                    on my games independently as a hobby. Furthermore, I can fluently play the Ukulele and am currently <br>
-                    learning how to play the guitar.
-                </p>
-            </section>
-        </article>
-
-        <article class="blog">
-            <section>
-                <h1>Example post 4</h1>
-                <p>
-                    Hey! I am an aspiring programmer, web developer, game developer, and musician. I plan to graduate <br>
-                    with my bachelor's degree in Computer Science and persue a career in web development, while working <br>
-                    on my games independently as a hobby. Furthermore, I can fluently play the Ukulele and am currently <br>
-                    learning how to play the guitar.
-                </p>
-            </section>
-        </article>
     </div>
 
     <div class="footer">
